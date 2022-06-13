@@ -1,0 +1,13 @@
+{
+  "name": "root",
+  "private": true,
+  "workspaces": [
+    "data",
+    "web",
+    "worker"
+  ],
+  "scripts": {
+    "start:web": "cd web && yarn run dev",
+    "start:worker": "cd worker && yarn run start"
+  }
+}
