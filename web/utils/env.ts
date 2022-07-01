@@ -1,8 +1,5 @@
 export const getEnvironment = () => {
-  return process.env.NEXT_PUBLIC_VERCEL_ENV as
-    | "production"
-    | "preview"
-    | "development";
+  return process.env.NEXT_PUBLIC_VERCEL_ENV as 'production' | 'preview' | 'development';
 };
 
 export const getBuildId = () => {
@@ -11,11 +8,11 @@ export const getBuildId = () => {
 
 export const getSiteUrl = () => {
   const url =
-    getEnvironment() === "production"
+    getEnvironment() === 'production'
       ? process.env.NEXT_PUBLIC_DOMAIN
       : process.env.NEXT_PUBLIC_VERCEL_URL;
 
-  if (url && !url.startsWith("http://") && !url.startsWith("https://")) {
+  if (url && !url.startsWith('http://') && !url.startsWith('https://')) {
     return `https://${url}`;
   }
 
@@ -33,7 +30,7 @@ export const getAbsoluteUrl = (path: string) => {
 };
 
 export const getGoogleAnalyticsToken = () => {
-  if (getEnvironment() !== "production") {
+  if (getEnvironment() !== 'production') {
     return null;
   }
 

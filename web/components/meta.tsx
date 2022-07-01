@@ -1,5 +1,6 @@
-import Head from "next/head";
-import { getAbsoluteUrl } from "../utils/env";
+import Head from 'next/head';
+import { FC } from 'react';
+import { getAbsoluteUrl } from '../utils/env';
 
 interface MetaProps {
   title?: string;
@@ -8,17 +9,12 @@ interface MetaProps {
   imageUrl?: string;
 }
 
-const Meta: React.FC<MetaProps> = ({
-  title,
-  description,
-  keywords,
-  imageUrl,
-}) => {
-  const siteName = "Sendullit";
-  const actualTitle = title ? title + " • " + siteName : siteName;
-  const actualDescription = description || "Schedule Reddit posts";
-  const actualKeywords = (keywords || ["reddit", "post", "schedule"]).join(",");
-  const actualImageUrl = imageUrl || "/logo.png";
+const Meta: FC<MetaProps> = ({ title, description, keywords, imageUrl }) => {
+  const siteName = 'Sendullit';
+  const actualTitle = title ? title + ' • ' + siteName : siteName;
+  const actualDescription = description || 'Schedule Reddit posts';
+  const actualKeywords = (keywords || ['reddit', 'post', 'schedule']).join(',');
+  const actualImageUrl = imageUrl || '/logo.png';
 
   return (
     <Head>

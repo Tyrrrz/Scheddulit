@@ -1,5 +1,5 @@
-import { GetStaticProps, NextPage } from "next";
-import { getFakeData } from "sendullit-data";
+import { GetStaticProps, NextPage } from 'next';
+import { getFakeData } from 'sendullit-data';
 
 interface HomePageProps {
   data: {
@@ -14,8 +14,8 @@ const HomePage: NextPage<HomePageProps> = ({ data }) => {
 export const getStaticProps: GetStaticProps<HomePageProps> = () => {
   return {
     props: {
-      data: getFakeData(),
-    },
+      data: getFakeData()
+    }
   };
 };
 
