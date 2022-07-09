@@ -10,7 +10,7 @@ const SignInPage: NextPage = () => {
       throw new Error('Missing Reddit client ID');
     }
 
-    return formatUrlWithQuery('https://reddit.com/api/v1/authorize', {
+    return formatUrlWithQuery('https://www.reddit.com/api/v1/authorize', {
       client_id: clientId,
       response_type: 'code',
       redirect_uri: getAbsoluteUrl('/signin/callback'),

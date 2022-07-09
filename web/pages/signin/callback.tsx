@@ -4,15 +4,30 @@ import { useEffect } from 'react';
 import useLocalState from '../../components/useLocalState';
 
 const SignInCallbackPage: NextPage = () => {
-  const router = useRouter();
+  const {
+    query: { code, error }
+  } = useRouter();
+
   const [token, setToken] = useLocalState('reddit-token', '');
 
-  const { code, error } = router.query;
-
   useEffect(() => {
-    if (code && !error) {
-      setToken(code as string);
+    if (error) {
+      return;
     }
+
+    if (!code) {
+      return;
+    }
+
+    fetch('/api/resolveToken', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({ code })
+    })
+      .then((res) => res.json())
+      .then(({ accessToken }) => setToken(accessToken));
   }, [setToken, code, error]);
 
   // Invalid callback parameters
@@ -27,7 +42,7 @@ const SignInCallbackPage: NextPage = () => {
 
   // Authentication completed
   if (token) {
-    return <div>Code: {token}</div>;
+    return <div>Token: {token}</div>;
   }
 
   // Authentication in progress

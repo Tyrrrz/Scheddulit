@@ -45,3 +45,7 @@ export const getGoogleAnalyticsToken = () => {
 export const getRedditClientId = () => {
   return process.env.NEXT_PUBLIC_REDDIT_CLIENT_ID;
 };
+
+export const getRedditClientSecret = () => {
+  return process.env.NEXT_PRIVATE_REDDIT_CLIENT_SECRET;
+};
