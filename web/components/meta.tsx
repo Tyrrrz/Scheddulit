@@ -11,7 +11,7 @@ interface MetaProps {
 
 const Meta: FC<MetaProps> = ({ title, description, keywords, imageUrl }) => {
   const siteName = 'Sendullit';
-  const actualTitle = title ? title + ' • ' + siteName : siteName;
+  const actualTitle = title ? title + ' | ' + siteName : siteName;
   const actualDescription = description || 'Schedule Reddit posts';
   const actualKeywords = (keywords || ['reddit', 'post', 'schedule']).join(',');
   const actualImageUrl = imageUrl || '/logo.png';
