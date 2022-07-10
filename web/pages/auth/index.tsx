@@ -13,7 +13,7 @@ const SignInPage: NextPage = () => {
     return formatUrlWithQuery('https://www.reddit.com/api/v1/authorize', {
       client_id: clientId,
       response_type: 'code',
-      redirect_uri: getAbsoluteUrl('/signin/callback'),
+      redirect_uri: getAbsoluteUrl('/auth/callback'),
       state: Math.random().toString().substring(2),
       duration: 'permanent',
       scope: ['identity', 'submit'].join(' ')
