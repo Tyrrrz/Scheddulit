@@ -1,10 +1,10 @@
 import { NextApiHandler } from 'next';
 import { getAbsoluteUrl, getRedditClientId, getRedditClientSecret } from '../../utils/env';
 
-interface ResolveTokenResponse {
+type ResolveTokenResponse = {
   accessToken: string;
   refreshToken: string;
-}
+};
 
 const resolveTokenEndpoint: NextApiHandler<ResolveTokenResponse> = async (req, res) => {
   try {

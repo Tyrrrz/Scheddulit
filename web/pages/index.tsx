@@ -1,11 +1,11 @@
 import { GetStaticProps, NextPage } from 'next';
 import { getFakeData } from 'sendullit-data';
 
-interface HomePageProps {
+type HomePageProps = {
   data: {
     foo: string;
   };
-}
+};
 
 const HomePage: NextPage<HomePageProps> = ({ data }) => {
   return <div>{JSON.stringify(data)}</div>;
