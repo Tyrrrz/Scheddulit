@@ -22,7 +22,7 @@ const useApi = () => {
   };
 
   const auth = async (code: string) => {
-    const { accessToken }: AuthEndpointResponse = await post('/api/resolveToken', { code });
+    const { accessToken }: AuthEndpointResponse = await post('/api/auth', { code });
     setToken(accessToken);
   };
 
