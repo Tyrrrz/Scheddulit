@@ -16,7 +16,10 @@ const nextConfig = {
       .filter(Boolean)
       .join('-'),
 
-    SITE_URL: process.env.SITE_URL || process.env.VERCEL_URL || 'http://localhost:3000',
+    SITE_URL:
+      process.env.SITE_URL ||
+      (process.env.VERCEL_URL && 'https://' + process.env.VERCEL_URL) ||
+      'http://localhost:3000',
 
     GOOGLE_ANALYTICS_ID: process.env.GOOGLE_ANALYTICS_ID,
     REDDIT_CLIENT_ID: process.env.REDDIT_CLIENT_ID
