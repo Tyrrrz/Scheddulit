@@ -1,6 +1,6 @@
 import { NextPage } from 'next';
 import { useMemo } from 'react';
-import { getAbsoluteUrl, getRedditClientId } from '../../utils/env';
+import { getRedditClientId, getSiteUrl } from '../../utils/env';
 import { formatUrlWithQuery } from '../../utils/url';
 
 const SignInPage: NextPage = () => {
@@ -13,7 +13,7 @@ const SignInPage: NextPage = () => {
     return formatUrlWithQuery('https://www.reddit.com/api/v1/authorize', {
       client_id: clientId,
       response_type: 'code',
-      redirect_uri: getAbsoluteUrl('/auth/callback'),
+      redirect_uri: getSiteUrl('/auth/callback'),
       state: Math.random().toString().substring(2),
       duration: 'permanent',
       scope: ['identity', 'submit'].join(' ')

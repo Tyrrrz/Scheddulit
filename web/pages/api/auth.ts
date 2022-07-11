@@ -1,5 +1,5 @@
 import { NextApiHandler } from 'next';
-import { getAbsoluteUrl, getRedditClientId, getRedditClientSecret } from '../../utils/env';
+import { getRedditClientId, getRedditClientSecret, getSiteUrl } from '../../utils/env';
 
 const resolveTokens = async (code: string) => {
   const res = await fetch(`https://www.reddit.com/api/v1/access_token`, {
@@ -13,7 +13,7 @@ const resolveTokens = async (code: string) => {
     body: new URLSearchParams({
       grant_type: 'authorization_code',
       code,
-      redirect_uri: getAbsoluteUrl('/auth/callback')
+      redirect_uri: getSiteUrl('/auth/callback')
     }).toString()
   });
 
