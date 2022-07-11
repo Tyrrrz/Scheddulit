@@ -1,3 +1,4 @@
+const { spawnSync } = require('child_process');
 const withPlugins = require('next-compose-plugins');
 const withPWA = require('next-pwa');
 const withTM = require('next-transpile-modules');
