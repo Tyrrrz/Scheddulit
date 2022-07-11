@@ -1,5 +1,5 @@
-import { NextApiHandler } from 'next';
 import { getRedditClientId, getRedditClientSecret, getSiteUrl } from '../../utils/env';
+import { post } from '../../utils/server';
 
 const resolveTokens = async (code: string) => {
   const res = await fetch(`https://www.reddit.com/api/v1/access_token`, {
@@ -18,7 +18,8 @@ const resolveTokens = async (code: string) => {
   });
 
   if (!res.ok) {
-    throw new Error(`Authentication request failed. Error: ${res.status}.`);
+    console.error('Authorization request failed', res);
+    throw new Error('Authorization request failed');
   }
 
   const { access_token, refresh_token } = await res.json();
@@ -34,24 +35,14 @@ export type AuthEndpointResponse = {
   refreshToken: string;
 };
 
-const authEndpoint: NextApiHandler<AuthEndpointResponse> = async (req, res) => {
-  if (req.method !== 'POST') {
-    res.status(405).end('Method not allowed');
-    return;
-  }
-
+const authEndpoint = post<AuthEndpointResponse>(async (req, res) => {
   const { code } = req.body;
   if (!code || typeof code !== 'string') {
-    res.status(400).end('Invalid request: missing code');
+    res.status(400).end('Missing authorization code');
     return;
   }
 
-  try {
-    res.status(200).json(await resolveTokens(code));
-  } catch (err) {
-    console.error(err);
-    res.status(500).end('Failed to authenticate');
-  }
-};
+  res.status(200).json(await resolveTokens(code));
+});
 
 export default authEndpoint;
