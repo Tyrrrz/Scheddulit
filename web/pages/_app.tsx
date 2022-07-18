@@ -3,7 +3,7 @@ import { useRouter } from 'next/router';
 import { FC, PropsWithChildren, useEffect, useState } from 'react';
 import Box from '../components/box';
 import Meta from '../components/meta';
-import useDebouncedValue from '../components/useDebouncedValue';
+import useDebouncedValue from '../hooks/useDebouncedValue';
 
 const Loader: FC = () => {
   const router = useRouter();
