@@ -7,7 +7,7 @@
     "worker"
   ],
   "scripts": {
-    "start:web": "cd web && yarn run dev",
+    "start:web": "cd web && yarn run start",
     "start:worker": "cd worker && yarn run start"
   }
 }
