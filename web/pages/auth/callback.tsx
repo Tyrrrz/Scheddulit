@@ -1,7 +1,7 @@
+import useApi from '@/hooks/useApi';
 import { NextPage } from 'next';
 import { useRouter } from 'next/router';
 import { FC, useEffect, useState } from 'react';
-import useApi from '../../hooks/useApi';
 
 const Authentication: FC<{ code: string }> = ({ code }) => {
   const api = useApi();

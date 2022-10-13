@@ -1,7 +1,7 @@
+import { getRedditClientId, getSiteUrl } from '@/utils/env';
+import { formatUrlWithQuery } from '@/utils/url';
 import { NextPage } from 'next';
 import { useMemo } from 'react';
-import { getRedditClientId, getSiteUrl } from '../../utils/env';
-import { formatUrlWithQuery } from '../../utils/url';
 
 const SignInPage: NextPage = () => {
   const authPromptUrl = useMemo(() => {

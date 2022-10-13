@@ -1,5 +1,5 @@
-import { AuthEndpointResponse } from '../pages/api/auth';
-import useLocalState from './useLocalState';
+import useLocalState from '@/hooks/useLocalState';
+import { AuthEndpointResponse } from '@/pages/api/auth';
 
 const useApi = () => {
   const [token, setToken] = useLocalState('token', '');

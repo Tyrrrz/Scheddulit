@@ -1,5 +1,5 @@
 import { GetStaticProps, NextPage } from 'next';
-import { getFakeData } from 'sendullit-data';
+import { getFakeData } from 'scheddulit-data';
 
 type HomePageProps = {
   data: {

@@ -1,14 +1,16 @@
-import { getRedditClientId, getRedditClientSecret, getSiteUrl } from '../../utils/env';
-import { post } from '../../utils/server';
+import { getRedditClientId, getRedditClientSecret, getSiteUrl } from '@/utils/env';
+import { post } from '@/utils/server';
 
 const resolveTokens = async (code: string) => {
+  const challengeToken = Buffer.from(getRedditClientId() + ':' + getRedditClientSecret()).toString(
+    'base64'
+  );
+
   const res = await fetch(`https://www.reddit.com/api/v1/access_token`, {
     method: 'POST',
     headers: {
       'Content-Type': 'application/x-www-form-urlencoded',
-      'Authorization':
-        'Basic ' +
-        Buffer.from(getRedditClientId() + ':' + getRedditClientSecret()).toString('base64')
+      'Authorization': `Basic ${challengeToken}`
     },
     body: new URLSearchParams({
       grant_type: 'authorization_code',
