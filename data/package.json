@@ -1,9 +1,9 @@
 {
-  "name": "sendullit-data",
+  "name": "scheddulit-data",
   "version": "1.0.0",
   "private": true,
   "devDependencies": {
-    "@types/node": "^17.0.21",
-    "typescript": "^4.6.2"
+    "@types/node": "^18.8.5",
+    "typescript": "^4.8.4"
   }
 }
