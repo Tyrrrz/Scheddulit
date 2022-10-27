@@ -1,11 +1,15 @@
 const { spawnSync } = require('child_process');
 const withPWA = require('next-pwa');
-const withTM = require('next-transpile-modules');
+const withRPC = require('next-rpc');
 const runtimeCaching = require('next-pwa/cache');
 
 /** @type {import('next').NextConfig} */
 const config = {
   reactStrictMode: true,
+
+  experimental: {
+    transpilePackages: ['scheddulit-data']
+  },
 
   env: {
     BUILD_ID: [
@@ -20,20 +24,19 @@ const config = {
       (process.env.VERCEL_URL && 'https://' + process.env.VERCEL_URL) ||
       'http://localhost:3000',
 
-    GOOGLE_ANALYTICS_ID: process.env.GOOGLE_ANALYTICS_ID,
     REDDIT_CLIENT_ID: process.env.REDDIT_CLIENT_ID
   }
 };
 
 const plugins = [
-  withTM(['scheddulit-data']),
   withPWA({
     dest: 'public',
     disable: process.env.NODE_ENV === 'development',
     runtimeCaching
-  })
+  }),
+  withRPC()
 ];
 
-module.exports = (_phase) => {
+module.exports = () => {
   return plugins.reduce((config, plugin) => plugin(config), config);
 };

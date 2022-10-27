@@ -1,22 +1,21 @@
 import Meta from '@/components/meta';
-import Tracker from '@/components/tracker';
+import VercelAnalytics from '@/components/vercelAnalytics';
 import useDebounce from '@/hooks/useDebounce';
 import useRouterStatus from '@/hooks/useRouterStatus';
 import c from 'classnames';
-import { FC, PropsWithChildren, useEffect, useState } from 'react';
+import { useRouter } from 'next/router';
+import { FC, PropsWithChildren, useEffect, useMemo, useState } from 'react';
 import FadeIn from 'react-fade-in';
 
 const Loader: FC = () => {
-  const status = useRouterStatus();
-
   // Only show loading indicator if the navigation takes a while.
   // This prevents indicator from flashing during faster navigation.
-  const visible = useDebounce(status === 'loading', 300);
-
+  const isVisible = useDebounce(useRouterStatus() === 'loading', 300);
   const [progress, setProgress] = useState(0);
 
   useEffect(() => {
-    if (!visible) {
+    if (!isVisible) {
+      setProgress(0);
       return;
     }
 
@@ -29,12 +28,12 @@ const Loader: FC = () => {
     }, 100);
 
     return () => clearInterval(interval);
-  }, [visible]);
+  }, [isVisible]);
 
   return (
     <div
       className={c('h-1', {
-        'bg-red-500': visible
+        'bg-red-500': isVisible
       })}
       style={{
         width: `${progress * 100}%`,
@@ -55,9 +54,13 @@ const Breadcrumb: FC = () => {
 };
 
 const Main: FC<PropsWithChildren> = ({ children }) => {
+  // Below is a hack to re-initialize the fade when the page changes
+  const router = useRouter();
+  const fadeKey = useMemo(() => Math.random().toString() + router.pathname, [router.pathname]);
+
   return (
     <main>
-      <FadeIn>{children}</FadeIn>
+      <FadeIn key={fadeKey}>{children}</FadeIn>
     </main>
   );
 };
@@ -66,13 +69,13 @@ const Footer: FC = () => {
   return <></>;
 };
 
-type PageProps = PropsWithChildren;
+type LayoutProps = PropsWithChildren;
 
-const Page: FC<PageProps> = ({ children }) => {
+const Layout: FC<LayoutProps> = ({ children }) => {
   return (
     <div className={c('flex', 'flex-col', 'min-h-screen', 'bg-neutral-50')}>
       <Meta />
-      <Tracker />
+      <VercelAnalytics />
 
       <Loader />
 
@@ -84,4 +87,4 @@ const Page: FC<PageProps> = ({ children }) => {
   );
 };
 
-export default Page;
+export default Layout;

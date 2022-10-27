@@ -28,14 +28,20 @@ export const getSiteUrl = (path?: string) => {
   return value;
 };
 
-export const getGoogleAnalyticsId = () => {
-  return process.env.GOOGLE_ANALYTICS_ID;
-};
-
 export const getRedditClientId = () => {
-  return process.env.REDDIT_CLIENT_ID;
+  const value = process.env.REDDIT_CLIENT_ID;
+  if (!value) {
+    throw new Error(`Environment variable 'REDDIT_CLIENT_ID' is not defined`);
+  }
+
+  return value;
 };
 
 export const getRedditClientSecret = () => {
-  return process.env.REDDIT_CLIENT_SECRET;
+  const value = process.env.REDDIT_CLIENT_SECRET;
+  if (!value) {
+    throw new Error(`Environment variable 'REDDIT_CLIENT_SECRET' is not defined`);
+  }
+
+  return value;
 };

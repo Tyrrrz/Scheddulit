@@ -1,22 +1,19 @@
-import { GetStaticProps, NextPage } from 'next';
-import { getFakeData } from 'scheddulit-data';
+import Link from '@/components/link';
+import useToken from '@/hooks/useToken';
+import { NextPage } from 'next';
 
-type HomePageProps = {
-  data: {
-    foo: string;
-  };
-};
+const HomePage: NextPage = () => {
+  const [token] = useToken();
 
-const HomePage: NextPage<HomePageProps> = ({ data }) => {
-  return <div>{JSON.stringify(data)}</div>;
-};
+  if (token) {
+    return <div>Logged in!</div>;
+  }
 
-export const getStaticProps: GetStaticProps<HomePageProps> = () => {
-  return {
-    props: {
-      data: getFakeData()
-    }
-  };
+  return (
+    <div>
+      <Link href="/auth">Authenticate</Link>
+    </div>
+  );
 };
 
 export default HomePage;
