@@ -1,5 +1,5 @@
-import Link from '@/components/link';
-import useToken from '@/hooks/useToken';
+import Link from '~/components/link';
+import useToken from '~/hooks/useToken';
 import { NextPage } from 'next';
 
 const HomePage: NextPage = () => {

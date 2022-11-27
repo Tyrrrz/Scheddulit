@@ -1,7 +1,7 @@
-import Meta from '@/components/meta';
-import VercelAnalytics from '@/components/vercelAnalytics';
-import useDebounce from '@/hooks/useDebounce';
-import useRouterStatus from '@/hooks/useRouterStatus';
+import Meta from '~/components/meta';
+import VercelAnalytics from '~/components/vercelAnalytics';
+import useDebounce from '~/hooks/useDebounce';
+import useRouterStatus from '~/hooks/useRouterStatus';
 import c from 'classnames';
 import { useRouter } from 'next/router';
 import { FC, PropsWithChildren, useEffect, useMemo, useState } from 'react';

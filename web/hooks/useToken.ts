@@ -1,4 +1,4 @@
-import usePersistedState from '@/hooks/usePersistedState';
+import usePersistedState from '~/hooks/usePersistedState';
 
 const useToken = () => {
   return usePersistedState('local', 'token', '');

@@ -1,4 +1,4 @@
-import { isProduction } from '@/utils/env';
+import { isProduction } from '~/utils/env';
 import { Analytics } from '@vercel/analytics/react';
 import { FC } from 'react';
 

@@ -1,4 +1,4 @@
-import { joinUrl } from '@/utils/url';
+import { joinUrl } from '~/utils/url';
 
 export const getRepoUrl = () => {
   return 'https://github.com/Tyrrrz/Scheddulit';

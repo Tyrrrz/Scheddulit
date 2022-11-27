@@ -1,5 +1,5 @@
-import { getRedditClientId, getRedditClientSecret } from '@/utils/env';
-import { formatUrlWithQuery } from '@/utils/url';
+import { getRedditClientId, getRedditClientSecret } from '~/utils/env';
+import { formatUrlWithQuery } from '~/utils/url';
 
 export const getOAuthUrl = (options: {
   state: string;
@@ -39,7 +39,7 @@ export const finishOAuth = async (options: { code: string; callbackUrl: string }
 
   if (!response.ok) {
     throw new Error(
-      `Request 'GET ${url}' failed. Status: ${response.status}. Body: '${await response.text()}'.`
+      `Request 'POST ${url}' failed. Status: ${response.status}. Body: '${await response.text()}'.`
     );
   }
 

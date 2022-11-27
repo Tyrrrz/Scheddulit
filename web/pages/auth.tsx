@@ -1,6 +1,6 @@
-import useToken from '@/hooks/useToken';
-import { finishOAuth, getOAuthUrl } from '@/lib/reddit/auth';
-import { getSiteUrl } from '@/utils/env';
+import useToken from '~/hooks/useToken';
+import { finishOAuth, getOAuthUrl } from '~/lib/reddit/auth';
+import { getSiteUrl } from '~/utils/env';
 import { GetServerSideProps, NextPage } from 'next';
 import { useEffect } from 'react';
 

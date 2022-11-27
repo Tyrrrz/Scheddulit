@@ -1,4 +1,4 @@
-import { isAbsoluteUrl } from '@/utils/url';
+import { isAbsoluteUrl } from '~/utils/url';
 import c from 'classnames';
 import NextLink from 'next/link';
 import { FC, PropsWithChildren } from 'react';
